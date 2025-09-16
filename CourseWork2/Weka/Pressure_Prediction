@@ -1,0 +1,544 @@
+=== Run information ===
+
+Scheme:weka.classifiers.trees.M5P -N -M 4.0
+Relation:     mars-weather_LSTM_adapted-weka.filters.unsupervised.attribute.Remove-R1-2,5
+Instances:    1866
+Attributes:   5
+              max_temp_t-1
+              pressure_t-1
+              ls
+              max_temp
+              pressure
+Test mode:evaluate on training data
+
+=== Classifier model (full training set) ===
+
+M5 unpruned model tree:
+(using smoothed linear models)
+
+pressure_t-1 <= 816.5 : 
+|   pressure_t-1 <= 763.5 : 
+|   |   pressure_t-1 <= 747.5 : 
+|   |   |   pressure_t-1 <= 741.5 : 
+|   |   |   |   pressure_t-1 <= 736.5 : LM1 (46/4.699%)
+|   |   |   |   pressure_t-1 >  736.5 : LM2 (68/3.465%)
+|   |   |   pressure_t-1 >  741.5 : LM3 (55/3.587%)
+|   |   pressure_t-1 >  747.5 : 
+|   |   |   pressure_t-1 <= 756.5 : 
+|   |   |   |   pressure_t-1 <= 750.5 : LM4 (28/2.224%)
+|   |   |   |   pressure_t-1 >  750.5 : 
+|   |   |   |   |   ls <= 175.5 : LM5 (38/3.254%)
+|   |   |   |   |   ls >  175.5 : 
+|   |   |   |   |   |   max_temp_t-1 <= 2.5 : LM6 (6/0.87%)
+|   |   |   |   |   |   max_temp_t-1 >  2.5 : 
+|   |   |   |   |   |   |   ls <= 180.5 : LM7 (2/3.69%)
+|   |   |   |   |   |   |   ls >  180.5 : LM8 (2/17.527%)
+|   |   |   pressure_t-1 >  756.5 : LM9 (37/4.006%)
+|   pressure_t-1 >  763.5 : 
+|   |   pressure_t-1 <= 790.5 : 
+|   |   |   pressure_t-1 <= 777.5 : 
+|   |   |   |   pressure_t-1 <= 770.5 : LM10 (35/4.342%)
+|   |   |   |   pressure_t-1 >  770.5 : LM11 (40/4.537%)
+|   |   |   pressure_t-1 >  777.5 : 
+|   |   |   |   pressure_t-1 <= 783.5 : LM12 (28/3.835%)
+|   |   |   |   pressure_t-1 >  783.5 : LM13 (34/4.339%)
+|   |   pressure_t-1 >  790.5 : 
+|   |   |   pressure_t-1 <= 804.5 : 
+|   |   |   |   pressure_t-1 <= 797.5 : LM14 (34/4.289%)
+|   |   |   |   pressure_t-1 >  797.5 : LM15 (30/4.875%)
+|   |   |   pressure_t-1 >  804.5 : 
+|   |   |   |   pressure_t-1 <= 812.5 : LM16 (33/4.687%)
+|   |   |   |   pressure_t-1 >  812.5 : LM17 (15/3.426%)
+pressure_t-1 >  816.5 : 
+|   pressure_t-1 <= 868.5 : 
+|   |   pressure_t-1 <= 844.5 : 
+|   |   |   pressure_t-1 <= 834.5 : 
+|   |   |   |   pressure_t-1 <= 827.5 : 
+|   |   |   |   |   pressure_t-1 <= 821.5 : 
+|   |   |   |   |   |   max_temp_t-1 <= -17 : LM18 (10/2.616%)
+|   |   |   |   |   |   max_temp_t-1 >  -17 : 
+|   |   |   |   |   |   |   ls <= 203.5 : LM19 (3/17.845%)
+|   |   |   |   |   |   |   ls >  203.5 : LM20 (7/3.536%)
+|   |   |   |   |   pressure_t-1 >  821.5 : LM21 (23/4.43%)
+|   |   |   |   pressure_t-1 >  827.5 : 
+|   |   |   |   |   ls <= 210.5 : 
+|   |   |   |   |   |   pressure_t-1 <= 831.5 : LM22 (19/3.872%)
+|   |   |   |   |   |   pressure_t-1 >  831.5 : 
+|   |   |   |   |   |   |   max_temp_t-1 <= -17.5 : LM23 (7/1.537%)
+|   |   |   |   |   |   |   max_temp_t-1 >  -17.5 : LM24 (2/12.915%)
+|   |   |   |   |   ls >  210.5 : LM25 (41/2.988%)
+|   |   |   pressure_t-1 >  834.5 : 
+|   |   |   |   pressure_t-1 <= 840.5 : 
+|   |   |   |   |   pressure_t-1 <= 839.5 : LM26 (50/4.036%)
+|   |   |   |   |   pressure_t-1 >  839.5 : 
+|   |   |   |   |   |   ls <= 3.5 : 
+|   |   |   |   |   |   |   max_temp_t-1 <= -12.5 : LM27 (2/18.45%)
+|   |   |   |   |   |   |   max_temp_t-1 >  -12.5 : LM28 (3/0%)
+|   |   |   |   |   |   ls >  3.5 : LM29 (15/3.277%)
+|   |   |   |   pressure_t-1 >  840.5 : LM30 (59/3.978%)
+|   |   pressure_t-1 >  844.5 : 
+|   |   |   pressure_t-1 <= 855.5 : 
+|   |   |   |   pressure_t-1 <= 850.5 : 
+|   |   |   |   |   ls <= 322.5 : 
+|   |   |   |   |   |   max_temp <= -12.5 : LM31 (21/3.091%)
+|   |   |   |   |   |   max_temp >  -12.5 : 
+|   |   |   |   |   |   |   pressure_t-1 <= 849.5 : 
+|   |   |   |   |   |   |   |   ls <= 315.5 : 
+|   |   |   |   |   |   |   |   |   ls <= 214.5 : 
+|   |   |   |   |   |   |   |   |   |   ls <= 10 : LM32 (2/12.915%)
+|   |   |   |   |   |   |   |   |   |   ls >  10 : LM33 (7/4.41%)
+|   |   |   |   |   |   |   |   |   ls >  214.5 : LM34 (7/2.764%)
+|   |   |   |   |   |   |   |   ls >  315.5 : 
+|   |   |   |   |   |   |   |   |   ls <= 317.5 : LM35 (2/0%)
+|   |   |   |   |   |   |   |   |   ls >  317.5 : 
+|   |   |   |   |   |   |   |   |   |   ls <= 320 : LM36 (2/8.302%)
+|   |   |   |   |   |   |   |   |   |   ls >  320 : LM37 (2/0.922%)
+|   |   |   |   |   |   |   pressure_t-1 >  849.5 : 
+|   |   |   |   |   |   |   |   max_temp_t-1 <= -8.5 : LM38 (3/4.842%)
+|   |   |   |   |   |   |   |   max_temp_t-1 >  -8.5 : LM39 (4/1.53%)
+|   |   |   |   |   ls >  322.5 : LM40 (67/3.758%)
+|   |   |   |   pressure_t-1 >  850.5 : LM41 (86/4.371%)
+|   |   |   pressure_t-1 >  855.5 : 
+|   |   |   |   pressure_t-1 <= 861.5 : LM42 (84/4.892%)
+|   |   |   |   pressure_t-1 >  861.5 : 
+|   |   |   |   |   pressure_t-1 <= 864.5 : LM43 (42/3.934%)
+|   |   |   |   |   pressure_t-1 >  864.5 : LM44 (54/4.403%)
+|   pressure_t-1 >  868.5 : 
+|   |   pressure_t-1 <= 890.5 : 
+|   |   |   pressure_t-1 <= 878.5 : 
+|   |   |   |   pressure_t-1 <= 872.5 : LM45 (60/3.968%)
+|   |   |   |   pressure_t-1 >  872.5 : LM46 (98/4.536%)
+|   |   |   pressure_t-1 >  878.5 : 
+|   |   |   |   pressure_t-1 <= 885.5 : LM47 (128/4.228%)
+|   |   |   |   pressure_t-1 >  885.5 : LM48 (64/3.659%)
+|   |   pressure_t-1 >  890.5 : 
+|   |   |   pressure_t-1 <= 904.5 : 
+|   |   |   |   pressure_t-1 <= 897.5 : LM49 (100/4.318%)
+|   |   |   |   pressure_t-1 >  897.5 : LM50 (106/3.962%)
+|   |   |   pressure_t-1 >  904.5 : 
+|   |   |   |   pressure_t-1 <= 910.5 : LM51 (58/4.2%)
+|   |   |   |   pressure_t-1 >  910.5 : 
+|   |   |   |   |   pressure_t-1 <= 917.5 : 
+|   |   |   |   |   |   pressure_t-1 <= 915.5 : LM52 (33/3.934%)
+|   |   |   |   |   |   pressure_t-1 >  915.5 : 
+|   |   |   |   |   |   |   max_temp <= -3.5 : 
+|   |   |   |   |   |   |   |   max_temp_t-1 <= -1.5 : LM53 (2/0.922%)
+|   |   |   |   |   |   |   |   max_temp_t-1 >  -1.5 : LM54 (2/16.605%)
+|   |   |   |   |   |   |   max_temp >  -3.5 : LM55 (13/4.603%)
+|   |   |   |   |   pressure_t-1 >  917.5 : LM56 (47/4.188%)
+
+LM num: 1
+pressure = 
+	0.0023 * max_temp_t-1 
+	+ 0.4201 * pressure_t-1 
+	+ 0.0045 * ls 
+	+ 424.8626
+
+LM num: 2
+pressure = 
+	0.0023 * max_temp_t-1 
+	+ 0.3742 * pressure_t-1 
+	+ 0.0045 * ls 
+	+ 461.9249
+
+LM num: 3
+pressure = 
+	0.0023 * max_temp_t-1 
+	+ 0.3275 * pressure_t-1 
+	+ 0.0045 * ls 
+	+ 499.817
+
+LM num: 4
+pressure = 
+	0.0023 * max_temp_t-1 
+	+ 0.5272 * pressure_t-1 
+	+ 0.0214 * ls 
+	+ 350.971
+
+LM num: 5
+pressure = 
+	0.0197 * max_temp_t-1 
+	+ 0.4592 * pressure_t-1 
+	+ 0.0182 * ls 
+	+ 404.6563
+
+LM num: 6
+pressure = 
+	0.0392 * max_temp_t-1 
+	+ 0.4592 * pressure_t-1 
+	+ 0.0182 * ls 
+	+ 405.6958
+
+LM num: 7
+pressure = 
+	0.0392 * max_temp_t-1 
+	+ 0.4592 * pressure_t-1 
+	+ 0.0182 * ls 
+	+ 405.8023
+
+LM num: 8
+pressure = 
+	0.0392 * max_temp_t-1 
+	+ 0.4592 * pressure_t-1 
+	+ 0.0182 * ls 
+	+ 405.8306
+
+LM num: 9
+pressure = 
+	0.0023 * max_temp_t-1 
+	+ 0.4097 * pressure_t-1 
+	+ 0.0152 * ls 
+	+ 446.0772
+
+LM num: 10
+pressure = 
+	0.0023 * max_temp_t-1 
+	+ 0.5181 * pressure_t-1 
+	+ 0.0017 * ls 
+	+ 369.426
+
+LM num: 11
+pressure = 
+	0.0023 * max_temp_t-1 
+	+ 0.4992 * pressure_t-1 
+	+ 0.0017 * ls 
+	+ 387.3832
+
+LM num: 12
+pressure = 
+	0.0023 * max_temp_t-1 
+	+ 0.5537 * pressure_t-1 
+	+ 0.0017 * ls 
+	+ 348.1824
+
+LM num: 13
+pressure = 
+	0.0023 * max_temp_t-1 
+	+ 0.5268 * pressure_t-1 
+	+ 0.0017 * ls 
+	+ 371.993
+
+LM num: 14
+pressure = 
+	0.0023 * max_temp_t-1 
+	+ 0.5384 * pressure_t-1 
+	+ 0.0017 * ls 
+	+ 366.155
+
+LM num: 15
+pressure = 
+	0.0023 * max_temp_t-1 
+	+ 0.5558 * pressure_t-1 
+	+ 0.0017 * ls 
+	+ 355.5098
+
+LM num: 16
+pressure = 
+	0.0023 * max_temp_t-1 
+	+ 0.5642 * pressure_t-1 
+	+ 0.0017 * ls 
+	+ 352.2257
+
+LM num: 17
+pressure = 
+	0.0023 * max_temp_t-1 
+	+ 0.6739 * pressure_t-1 
+	+ 0.0017 * ls 
+	+ 265.2698
+
+LM num: 18
+pressure = 
+	0.0528 * max_temp_t-1 
+	+ 0.6071 * pressure_t-1 
+	- 0.0036 * ls 
+	+ 323.6602
+
+LM num: 19
+pressure = 
+	0.0528 * max_temp_t-1 
+	+ 0.6071 * pressure_t-1 
+	- 0.0141 * ls 
+	+ 326.3905
+
+LM num: 20
+pressure = 
+	0.0528 * max_temp_t-1 
+	+ 0.6071 * pressure_t-1 
+	- 0.0122 * ls 
+	+ 325.9014
+
+LM num: 21
+pressure = 
+	0.0528 * max_temp_t-1 
+	+ 0.5921 * pressure_t-1 
+	- 0.0036 * ls 
+	+ 337.6643
+
+LM num: 22
+pressure = 
+	0.1069 * max_temp_t-1 
+	+ 0.9454 * pressure_t-1 
+	- 0.0054 * ls 
+	+ 47.9898
+
+LM num: 23
+pressure = 
+	0.1628 * max_temp_t-1 
+	+ 1.0809 * pressure_t-1 
+	- 0.0054 * ls 
+	- 62.4995
+
+LM num: 24
+pressure = 
+	0.1756 * max_temp_t-1 
+	+ 1.0809 * pressure_t-1 
+	- 0.0054 * ls 
+	- 61.9071
+
+LM num: 25
+pressure = 
+	0.0693 * max_temp_t-1 
+	+ 0.5569 * pressure_t-1 
+	- 0.0048 * ls 
+	+ 370.9364
+
+LM num: 26
+pressure = 
+	0.0441 * max_temp_t-1 
+	+ 0.4543 * pressure_t-1 
+	- 0.0007 * ls 
+	+ 457.4829
+
+LM num: 27
+pressure = 
+	0.4016 * max_temp_t-1 
+	+ 0.5623 * pressure_t-1 
+	+ 0.0023 * ls 
+	+ 371.2834
+
+LM num: 28
+pressure = 
+	0.3823 * max_temp_t-1 
+	+ 0.5623 * pressure_t-1 
+	+ 0.0023 * ls 
+	+ 371.1805
+
+LM num: 29
+pressure = 
+	0.0557 * max_temp_t-1 
+	+ 0.5623 * pressure_t-1 
+	+ 0.0013 * ls 
+	+ 367.8525
+
+LM num: 30
+pressure = 
+	0.0323 * max_temp_t-1 
+	+ 0.3502 * pressure_t-1 
+	- 0.0007 * ls 
+	+ 548.0432
+
+LM num: 31
+pressure = 
+	0.0362 * max_temp_t-1 
+	+ 0.5835 * pressure_t-1 
+	- 0.0011 * ls 
+	+ 0.0288 * max_temp 
+	+ 353.558
+
+LM num: 32
+pressure = 
+	0.0728 * max_temp_t-1 
+	+ 0.7396 * pressure_t-1 
+	+ 0.0002 * ls 
+	+ 0.0235 * max_temp 
+	+ 221.5814
+
+LM num: 33
+pressure = 
+	0.0728 * max_temp_t-1 
+	+ 0.7396 * pressure_t-1 
+	+ 0.0002 * ls 
+	+ 0.0235 * max_temp 
+	+ 221.6467
+
+LM num: 34
+pressure = 
+	0.0728 * max_temp_t-1 
+	+ 0.7396 * pressure_t-1 
+	+ 0.0003 * ls 
+	+ 0.0235 * max_temp 
+	+ 221.8279
+
+LM num: 35
+pressure = 
+	0.0728 * max_temp_t-1 
+	+ 0.7396 * pressure_t-1 
+	- 0.0691 * ls 
+	+ 0.0235 * max_temp 
+	+ 243.2216
+
+LM num: 36
+pressure = 
+	0.0728 * max_temp_t-1 
+	+ 0.7396 * pressure_t-1 
+	- 0.062 * ls 
+	+ 0.0235 * max_temp 
+	+ 240.8794
+
+LM num: 37
+pressure = 
+	0.0728 * max_temp_t-1 
+	+ 0.7396 * pressure_t-1 
+	- 0.062 * ls 
+	+ 0.0235 * max_temp 
+	+ 240.8778
+
+LM num: 38
+pressure = 
+	0.0978 * max_temp_t-1 
+	+ 0.8753 * pressure_t-1 
+	- 0.0011 * ls 
+	+ 0.0235 * max_temp 
+	+ 107.6151
+
+LM num: 39
+pressure = 
+	0.0978 * max_temp_t-1 
+	+ 0.8753 * pressure_t-1 
+	- 0.0011 * ls 
+	+ 0.0235 * max_temp 
+	+ 107.7088
+
+LM num: 40
+pressure = 
+	0.033 * max_temp_t-1 
+	+ 0.3212 * pressure_t-1 
+	- 0.0011 * ls 
+	+ 576.1416
+
+LM num: 41
+pressure = 
+	0.0235 * max_temp_t-1 
+	+ 0.2468 * pressure_t-1 
+	- 0.0012 * ls 
+	+ 642.6575
+
+LM num: 42
+pressure = 
+	0.0124 * max_temp_t-1 
+	+ 0.2676 * pressure_t-1 
+	- 0.0007 * ls 
+	+ 628.9442
+
+LM num: 43
+pressure = 
+	0.0124 * max_temp_t-1 
+	+ 0.4279 * pressure_t-1 
+	- 0.0007 * ls 
+	+ 494.0022
+
+LM num: 44
+pressure = 
+	0.0124 * max_temp_t-1 
+	+ 0.3977 * pressure_t-1 
+	- 0.0007 * ls 
+	+ 522.1445
+
+LM num: 45
+pressure = 
+	0.003 * max_temp_t-1 
+	+ 0.2994 * pressure_t-1 
+	- 0.0002 * ls 
+	+ 610.1881
+
+LM num: 46
+pressure = 
+	0.003 * max_temp_t-1 
+	+ 0.2492 * pressure_t-1 
+	- 0.0002 * ls 
+	+ 657.4008
+
+LM num: 47
+pressure = 
+	0.003 * max_temp_t-1 
+	+ 0.2244 * pressure_t-1 
+	- 0.0002 * ls 
+	+ 684.0767
+
+LM num: 48
+pressure = 
+	0.003 * max_temp_t-1 
+	+ 0.2952 * pressure_t-1 
+	- 0.0002 * ls 
+	+ 625.9363
+
+LM num: 49
+pressure = 
+	0.0041 * max_temp_t-1 
+	+ 0.2433 * pressure_t-1 
+	- 0.0002 * ls 
+	+ 676.6136
+
+LM num: 50
+pressure = 
+	0.0041 * max_temp_t-1 
+	+ 0.2377 * pressure_t-1 
+	- 0.0002 * ls 
+	+ 686.8628
+
+LM num: 51
+pressure = 
+	0.0044 * max_temp_t-1 
+	+ 0.311 * pressure_t-1 
+	- 0.0002 * ls 
+	+ 625.1675
+
+LM num: 52
+pressure = 
+	0.0044 * max_temp_t-1 
+	+ 0.5193 * pressure_t-1 
+	- 0.0002 * ls 
+	+ 439.1807
+
+LM num: 53
+pressure = 
+	0.0044 * max_temp_t-1 
+	+ 0.5779 * pressure_t-1 
+	- 0.0002 * ls 
+	+ 386.0009
+
+LM num: 54
+pressure = 
+	0.0044 * max_temp_t-1 
+	+ 0.5779 * pressure_t-1 
+	- 0.0002 * ls 
+	+ 385.9081
+
+LM num: 55
+pressure = 
+	0.0044 * max_temp_t-1 
+	+ 0.5779 * pressure_t-1 
+	- 0.0002 * ls 
+	+ 386.508
+
+LM num: 56
+pressure = 
+	0.0044 * max_temp_t-1 
+	+ 0.4092 * pressure_t-1 
+	- 0.0002 * ls 
+	+ 543.5251
+
+Number of Rules : 56
+
+Time taken to build model: 0.05 seconds
+
+=== Evaluation on training set ===
+=== Summary ===
+
+Correlation coefficient                  0.9992
+Mean absolute error                      1.5293
+Root mean squared error                  2.1598
+Relative absolute error                  3.4087 %
+Root relative squared error              3.9848 %
+Total Number of Instances             1866     
+

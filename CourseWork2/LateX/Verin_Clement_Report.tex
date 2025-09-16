@@ -1,0 +1,347 @@
+\documentclass[10pt,a4paper,oneside]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage{standalone}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{tocloft}
+\usepackage{hyperref}
+\usepackage{float}
+\usepackage{darkmode}
+
+\enabledarkmode
+\setlength{\parindent}{0pt}
+
+\author
+{
+  Vérin Clément \\ \texttt{ISIMA, ZZ2 F1}
+  \and
+  Trundle Paul \\ \texttt{Bradford University}
+}
+
+\title{Martian Weather Trends Study}
+
+\hypersetup
+{
+  colorlinks=true,
+  linkcolor=black,
+  urlcolor=cyan,
+  linkcolor=white
+}
+
+\begin{document}
+
+\fbox
+{
+  \parbox{\textwidth}
+  {
+    \centering
+    \maketitle
+  }
+}
+
+\vspace{2cm}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=1.0\textwidth]{./LateX/Captures/Title.png}
+  \caption{Selfie of the \textit{Curiosity} Rover (October 2021)}
+\end{figure}
+
+\begin{center}
+  \href{https://bradford.instructure.com/courses/21742/assignments/114045} {Deposit Link}
+\end{center}
+
+\renewcommand{\contentsname}{Summary}
+\renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
+\renewcommand{\cftdotsep}{2}
+
+\newpage
+
+\tableofcontents
+
+\newpage
+
+\section{Introduction}
+On August 2012 the 6th, the Rover \textit{Curiosity} landed in \textit{Gale's Crater} on \textit{Mars}. Despite sandstorms, dust, radiations, brutal temperature drops and raises \textit{Curiosity} is still working today.
+Thanks to \textit{Curiosity} and the other Rovers on \textit{Mars}, we have been able to daily sample and measure the weather on \textit{Mars}.\\
+
+The main goal here is to give an overview of the provided \textit{mars-weather} CSV file, to deploy its content and to use it, not exactly in order to \textit{"predict"} the weather on \textit{Mars}, but rather in order to extract a general behaviour and cycle of the weather by looking at the given conditions.
+Since \textit{Curiosity} has not moved very far from its starting point, we can consider its location as still.
+
+\section{CSV File Description}
+The \textit{mars-weather} describes 10 columns which are:\\
+
+\textbf{id}: Unique number representing the sample\\
+\textbf{terrestrial\_date}: Earthian date of sample collection.\\
+\textbf{sol}: Number of Marsian days elapsed since the \textit{Curiosity} Rover landed. One "day" on Mars last 24h39, wich is called a "sol".\\
+\textbf{ls}: "Solar Longitude". Position of mars on its orbit around the sun. That's why it moves between 0 and 360 degrees.\\
+\textbf{month}: Earthian month of sample collection.\\
+\textbf{min\_temp}: Minimal temperature noted on this sol.\\
+\textbf{max\_temp}: Maximal temperature noted on this sol.\\
+\textbf{pressure}: Pressure noted on this sol.\\
+\textbf{wind\_speed}: Speed of the wind noted on this sol.\\
+\textbf{atmo\_opacity}: General weather of this sol.
+
+\section{First view on Statistics}
+
+\subsection{Column Selection}
+First, let's ignore some informations in order to focus on the most useful ones.\\
+
+The columns \textbf{id}, \textbf{terrestrial\_date}, \textbf{month}, \textbf{wind\_speed}, and \textbf{atmo\_opacity} are not relevant for us because they are either not directly useful for statistics, either not returned, or etiher unchanged through instances.\\
+
+In this Coursework, I personally thinks it would be easier to count the time as we were on \textit{Mars}, because one day duration on \textit{Mars} is pretty close to \textit{Earth}, and \textit{Mars} is the actual studied planet here.\\
+So one \textit{day} becomes one \textit{sol}, which is a very important information, allowing us to track the weather through sols.\\
+Moreover, a year on Mars is approximatively 668 sols (687 days on \textit{Earth}).\\
+
+Talking about weather behaviour throughout a Martian year, the first obvious parameter we could think about is \textit{Solar Longitude}: since \textit{Mars} has a not null rotation axis like \textit{Earth}, \textit{Mars} certainly has four seasons which impacts its weather.\\
+By the way, this angle is 23.5 degrees on \textit{Earth} and 25.19 degrees on \textit{Mars}, which are not so different.\\
+
+Of course, \textbf{min\_temp}, \textbf{max\_temp} and \textbf{pressure} are the statistics that reflect the current weather on \textit{Mars}, so they are the main studied columns.
+
+\subsection{Parameters Evolution According to Solar Longitude}
+
+Let's plot the evolution of these 3 parameters by sol using Python libraries. You can find the source code in the \textit{Python} repository as \textit{Mars\_Weather\_Graphics.py}:
+
+\begin{figure}[H]
+  \centering
+  \makebox[\textwidth][c]{\includegraphics[width=1.3\textwidth]{./LateX/Captures/Temperature\_Minimal\_Solar\_Longitude.png}}
+  \caption{Minimum Temperature evolution as function of Solar Longitude}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \makebox[\textwidth][c]{\includegraphics[width=1.3\textwidth]{./LateX/Captures/Temperature\_Maximal\_Solar\_Longitude.png}}
+  \caption{Maximum Temperature evolution as function of Solar Longitude}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \makebox[\textwidth][c]{\includegraphics[width=1.3\textwidth]{./LateX/Captures/Pressure\_Solar\_Longitude.png}}
+  \caption{Pressure evolution as function of Solar Longitude}
+\end{figure}
+
+So already, this is pretty reassuring to see that these parameters appear to evolve consistently and logically throughout the whole Martian year.
+Maximum and Minimum temperature have the same behaviour, as expected because they reflect the same data. If we think in terms of season, the lower temperatures recorded could corresponds to Winter's solstice (arround ls=90 degrees), and the higher temperatures to Summer's solstice (arround 250 degrees).\\
+
+On the other hand, it surprised me to see the pressure going up while temperatures are dropping down, at the beginning of the graphs (This doesn't seems in accordance with \textit{ideal gas law}: \textit{PV=nRT}).
+Apparently, this is usual on \textit{Mars} because its trajectory arround the sun is more eccentric than \textit{Earth} and most of the Martian ice contains \textit{CO2} which has its own state cycle and affects the results. So the \textit{n} parameter is actually also changing.
+But this is not the main topic of this CourseWork.
+
+\newpage
+\subsection{Parameters Evolution Sol per Sol}
+I also wondered how these meterological parameters changed throughout \textit{Curiosity}'s whole given samples by showing them sol per sol since it landed:
+
+\begin{figure}[H]
+  \centering
+  \makebox[\textwidth][c]{\includegraphics[width=1.3\textwidth]{./LateX/Captures/Temperature\_Minimal\_Sol.png}}
+  \caption{Minimum Temperature evolution graph by sol}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \makebox[\textwidth][c]{\includegraphics[width=1.3\textwidth]{./LateX/Captures/Temperature\_Maximal\_Sol.png}}
+  \caption{Maximum Temperature evolution graph by sol}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \makebox[\textwidth][c]{\includegraphics[width=1.3\textwidth]{./LateX/Captures/Pressure\_Sol.png}}
+  \caption{Pressure evolution graph by sol}
+\end{figure}
+
+These graphs cover even more time than the previous ones because the CSV file goes from day 1 to 1977 which is almost 3 Martian years.\\
+That's why we can see the same previous patterns but repeated 3 times on the new graphs for the Temperatures.\\
+
+This is the same for Pressure, but I think this one is even more significative because of these two peaks repeating.
+But what I can't understand for now is why there are such huge pressure drops between each double-peak, which are not shown in the previous graph ?\\
+
+Let's just assume that scales are different between these two graphs.
+
+\section{Clustering}
+
+\subsection{Cluster Training}
+Since we assumed that these data may be classified into 4 categories: Summer, Autumn, Winter and Spring. Let's try to train a \textbf{Clustering} algorithm and see if its results are relevant if we indicates him 4 Cluster.
+So we are searching for a \textit{4 $\times$ 25\%} repartition between these categories, showing 4 seasons. We can trust in it because the \textit{mars-weather} CSV file seems to covers almost exactly 3 Martian years, so we have the same amount of data for each possible seasons.\\
+
+Moving to \textit{Weka}, I then opened \textit{mars-weather} CSV file and kept these 5 categories: \textbf{sol}, \textbf{ls}, \textbf{min\_temp}, \textbf{max\_temp} and \textbf{pressure}.\\
+\newpage
+By the way, we can visualize the same graphs than before:
+
+\begin{figure}[H]
+  \centering
+  \makebox[\textwidth][c]{\includegraphics[width=0.6\textwidth]{./LateX/Captures/Weka\_Visualization.png}}
+  \caption{\textit{Weka} Visualization Matrix}
+\end{figure}
+
+And I started my first \textbf{Clustering} using the \textit{Kmeans} clusterer. First I've got a surprising high \textit{Sum squarred errors} value, and one of these cluster contained \textit{50\%} of all the data, which do not match with the 4 seasons concept.
+Then I realized the \textbf{sol} parameter is not characteristic of a sample and does not affect the weather condition (but teh results): Let's remove it, It was an obvious mistake to keep it.\\
+\newpage
+So let's continue without \textbf{sol} parameter. Here is the results we got, using the same set for training and testing:
+
+\begin{figure}[H]
+  \centering
+  \makebox[\textwidth][c]{\includegraphics[width=0.6\textwidth]{./LateX/Captures/First\_Clustering.png}}
+  \caption{\textit{Kmeans} Clustering within 4 categories}
+\end{figure}
+
+Moreover, normalizing, standardizing, or filling the missing data (there is 27 of them), surprisingly did not change the results: when parameters are chosen, repartition results remains all the same.\\
+
+When we take a look at the \textbf{min\_temp} line, it stays roughly the same across the four clusters. Thinking about it, we can assume minimal temperatures are reached the \textbf{night} on Mars, when there is no light.
+But temperature differences between seasons precisely depends on the sun rays repartition over the surface: \textbf{min\_temp} is not a strong enough discriminating charactristic in order to know which season we are, but \textbf{max\_temp} actually is.\\
+\newpage
+Let's try another time without \textbf{min\_temp}:
+
+\begin{figure}[H]
+  \centering
+  \makebox[\textwidth][c]{\includegraphics[width=0.6\textwidth]{./LateX/Captures/Second\_Clustering.png}}
+  \caption{\textit{Kmeans} Clustering within 4 categories (With no filters and by fulfilling the missing data with their means)}
+\end{figure}
+
+The repartition percentages are still not quite but are not aberrant. The \textit{sum of squarred error} is better though, so I think it is a great improvement considering 1894 instances and 4 cluster.\\
+Let's not forget that temperatures are not the main characteristic of the seasons, sols are cold and sometimes cold, sometimes hot. These are extrem values that we can't remove and fully rely on.
+However, pressure seems to have a well defined behaviour which depends on solar longitude, but this is only my perception.\\
+
+Besides, \textit{Curiosity} sampled these values in the \textit{Gale's Crater} which is almost equatorian, slightly to the south hemisphere. So seasons are more balanced than other locations and values in this dataset are unfortunately less significative.\\
+
+So now, the question is: which cluster is which season ?
+\newpage
+On earth, the origin of solar longitude, which is the \textit{0 degrees} angle, is reached at the \textit{Vernal Equinox} and each season got his own angle, as this table shows it:
+
+\begin{figure}[H]
+  \centering
+  \makebox[\textwidth][c]{\includegraphics[width=0.8\textwidth]{./LateX/Captures/Wikipedia_Earthian_Solar_Longitude_Data.png}}
+  \caption{Recognisable solar longitude on \textit{Earth} \textit{(Wikipedia)}}
+\end{figure}
+
+This is pretty the same pattern and logic on \textit{Mars}:
+
+\begin{figure}[H]
+  \centering
+  \makebox[\textwidth][c]{\includegraphics[width=1\textwidth]{./LateX/Captures/Wikipedia_Martian_Solar_Longitude_Data.png}}
+  \caption{Recognisable solar longitude on \textit{Mars} \textit{(Wikipedia)}}
+\end{figure}
+
+Using the results, It's still pretty difficult to put a season on each cluster ... \\
+
+The hotter season (arround -3 degrees), which is probably summer, has a solar longitude which is not recognizable (it is supposed to be between 90 and 180 degrees) UNLESS we consider Curiosity to be in the southern hemisphere (which is actually true), so angles are inverted.\\
+
+Considering this, let be each cluster become:\\
+
+- \textbf{Spring}: Third category. \textit{Actual value + standard deviation = 169 + 21 = 180 degrees}, so it could work.\\
+- \textbf{Summer}: Second category. Between 270 and 360 degrees.\\
+- \textbf{Autumn}: First category. Arround 0 and 90 degrees.\\
+- \textbf{Winter}: Fourth category. Between 90 and 180 degrees.\\
+
+Temperatures seems to match with each category too.
+
+\section{Predicting the Weather ?}
+After categorizing and recognizing the data, I started to wonder whether it could be used to predict future values.
+Of course, \textbf{Weather Forecasting} is a very complex discipline which requires expensive tools, advanced concepts, and powerful machines.
+Thta's why here, we will only limit ourselves to a sol-by-sol prediction.\\
+
+The main goal is to imitate a \textbf{Long Short Term Memory (LSTM)} training modele on \textit{Weka}, as mentioned by miss \textit{Priyadarshini} in her article.
+
+\subsection{LSTM Adapted CSV Maker Script}
+In order to make the \textbf{Long Short Term Memory} strategy work, we need to re-organize our data as follows: each line is a couple \textit{(Data sol n-1, Data sol n)}.
+At first, I tried to use the \textit{TimesSeriesTranslate} filter porposed by \textit{Weka} on the original CSV file, but it was rather tedious, require us to repeat the same actions, and I honestly did not understand how it works.\\
+
+That's why I just typed a basic Python script adapting the original CSV file so it become readable by \textit{Weka} \textbf{LSTM} strategies. You can find the source code in the \textit{Python} repository as \textit{LSTM\_CSV\_MAKER.py} and consult the generated file in the \textit{CSV} as \textit{mars-weather\_LSTM\_adapted.csv}.\\
+
+But basically, It just looks like this:
+
+\begin{figure}[H]
+  \centering
+  \makebox[\textwidth][c]{\includegraphics[width=1\textwidth]{./LateX/Captures/CSV_Sample.png}}
+  \caption{A sample of the \textit{mars-weather\_LSTM\_adapted.csv} file}
+\end{figure}
+
+The \textbf{sol\_t-1} and \textbf{sol\_t} will not be used in the training since they only are benchmarks for guidance. Same for \textbf{ls\_t-1}.
+However, \textbf{ls} is the only \textit{n} level parameter which is relevant for predicting \textit{n} level data. So we are keeping it.
+
+\subsection{\textit{Weka} adapted \textbf{LSTM} strategy}
+Now, we just need to open the file, use the \textbf{Classify} section and choose \textit{M5P}, in \textit{trees} section.
+Each time we run our model, It will provide these kind of output:
+
+\begin{figure}[H]
+  \centering
+  \makebox[\textwidth][c]{\includegraphics[width=0.6\textwidth]{./LateX/Captures/Output_Example.png}}
+  \caption{Output Example}
+\end{figure}
+
+"\textit{LM}" is a node followed by its number, and its prediction, which can be either a constant or an equation. The main statistics are showed then.
+
+Depending on chosen parameters, the produced trees and nodes are slightly different, and results too. But not from a great distance.\\
+
+Weka suggests us 4 parameters:\\
+
+- \textbf{Regression Tree Builder}: if marked, will not associates a Linear Regression Equation to each node, but a constant.\\
+- \textbf{Minimum Number of Instances}: the more this value is high, the earlier the training tree will stop. So It is better to keep it low, but not too low in order to avoid \textbf{Overfitting} (set to a default value 4 here).\\
+- \textbf{Prunning}: if marked, will erase branch considered as not relevant. It is entirely on \textit{Weka}'s own though.\\
+- \textbf{Smoothing}: if marked, will mix some parent-child nodes in order to control the ammount of nodes and to simplify the found equations.\\
+\newpage
+I think this is better not to use \textbf{Regression Tree Builder} since we need the previous data to be used for predicting and besides, we've got a very limited ammount of nodes (only 2 rules) when I started using it:
+
+\begin{figure}[H]
+  \centering
+  \makebox[\textwidth][c]{\includegraphics[width=0.6\textwidth]{./LateX/Captures/Underfitted_Tree.png}}
+  \caption{Underfitted Tree for Pressure Prediction}
+\end{figure}
+
+I did not use the \textbf{Prunning} feature too. Because the data does vary very quickly, I think \textit{Weka} is ignoring too much of them. Now we've got 56 rules.\\
+Using \textbf{Smoothing} feature just slightly decreased margin error, so we are gonna use It.\\
+
+\begin{figure}[H]
+  \centering
+  \makebox[\textwidth][c]{\includegraphics[width=1\textwidth]{./LateX/Captures/Smoothing_Difference.png}}
+  \caption{With and without \textbf{Smoothing} feature comparison for Pressure (Left to right)}
+\end{figure}
+
+\subsection{Final Results and Testing Phase}
+So, the final and best results I've got for both pressure and temperature preditcion are:
+
+\begin{figure}[H]
+  \centering
+  \makebox[\textwidth][c]{\includegraphics[width=1\textwidth]{./LateX/Captures/LSTM_Final_Results.png}}
+  \caption{\textbf{LSTM} Final Results}
+\end{figure}
+
+Surprisingly, results are better for temperature when they are predicted as constants and only by using tree rules, which uses different parameters:
+
+\begin{figure}[H]
+  \centering
+  \makebox[\textwidth][c]{\includegraphics[width=0.7\textwidth]{./LateX/Captures/Temperature_Tree_Sample.png}}
+  \caption{Sample of the Tree Rules for Temperature on \textit{Weka}}
+\end{figure}
+
+I am pretty surprised to see this tree using \textbf{pressure} for predicting \textbf{max\_temp} ... But infortunately I can not change that.\\
+
+Seeing 774 rules made me fear that our model was overfitted, but it doesn't seems to be according to results.\\
+
+Here is also a sample of what the testing phase looks like on Weka:
+
+\begin{figure}[H]
+  \centering
+  \makebox[\textwidth][c]{\includegraphics[width=0.5\textwidth]{./LateX/Captures/Testing_Phase.png}}
+  \caption{Sample of Tested Temperatures Instances by Weka}
+\end{figure}
+
+As we can see, most of them are pretty good, and other are mistaken by more than 10 degrees.\\
+Instances between 2 and 8 were actually empty on CSV file and has been completed by \textit{Weka}, maybe should I have simply removed them.
+\newpage
+\section{Conclusion}
+The given results seems quite and may appear modest, but they above all have been produced by approaches and procedures I've carfully tried to well thought-out and that I understand.\\
+
+This CourseWork allowed me to better understand severals new tools and concepts that were previously unfamiliar to me, by actively manipulating them and by searching their details.\\
+
+I tried to extract the most informations I can gain from that CSV file by compiling them and training predictive models, but of course, it goes without saying that you will always be able to be more precise, and to produce more and better findings.\\
+\section{References}
+- \textbf{Research Gate}, "\textit{Mars weather data analysis using machine learning techniques}" by \textit{Ishaani Priyadarshini}, last edited on December 2021: \url{https://www.researchgate.net/publication/352976885_Mars_weather_data_analysis_using_machine_learning_techniques}
+- \textbf{Wikipedia}, "\textit{Atmosphere of Mars}", section "\textit{Current chemical composition}", last edited on April 2025: \url{https://en.wikipedia.org/wiki/Atmosphere_of_Mars?#Current_chemical_composition}\\
+- \textbf{Wikipedia}, "\textit{Solar longitude (Earth)}", last edited on November 2023: \url{https://en.wikipedia.org/wiki/Solar_longitude}\\
+- \textbf{Wikipedia}, "\textit{Timekeeping on Mars}", section "Definition of Year and Seasons", last edited on April 2025: \url{https://en.wikipedia.org/wiki/Timekeeping_on_Mars#Definition_of_year_and_seasons}\\
+- \textbf{Kanaries}, "\textit{How to Use the Pandas Shift Method for Data Analysis}" by \textit{Omar C. Williams}, last edited on August 2023: \url{https://docs.kanaries.net/topics/Pandas/pandas-shift}\\
+
+\end{document}
